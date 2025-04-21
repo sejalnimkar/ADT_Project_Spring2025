@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | AI & LLM Reddit Sentiment Analysis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0c0f15;
+      color: #e5e7eb;
+      font-family: Georgia, 'Segoe UI', sans-serif;
+      padding: 60px 30px;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 38px;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .section {
+      background-color: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 40px 40px 50px;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.04);
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    h4 {
+      color: #60a5fa;
+      font-size: 19px;
+      margin-top: 30px;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 0;
+      list-style-position: inside;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .btn-start {
+      background-color: #10b981;
+      color: white;
+      padding: 12px 28px;
+      font-size: 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-start:hover {
+      background-color: #059669;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .gradient-text {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section text-center">
+      <h1 class="gradient-text mb-4">Reddit Sentiment Analysis on AI & LLMs</h1>
+
+      <p>
+        This project analyzes Reddit discussions around Artificial Intelligence (AI) and Large Language Models (LLMs),
+        helping users understand sentiment, trends, and public opinion in real time.
+      </p>
+
+      <div class="row justify-content-center text-start text-md-center mt-4">
+        <div class="col-md-5 mb-4">
+          <h4>📊 Data & Tools</h4>
+          <ul class="list-unstyled">
+            <li><strong>Source:</strong> Reddit API (via PRAW)</li>
+            <li><strong>Subreddits:</strong> r/LLM, r/artificial (or enter your own)</li>
+            <li><strong>Backend:</strong> Flask + MongoDB</li>
+            <li><strong>Sentiment:</strong> VADER (NLTK)</li>
+            <li><strong>Visuals:</strong> Chart.js</li>
+          </ul>
+        </div>
+        <div class="col-md-5 mb-4">
+          <h4>✨ Key Features</h4>
+          <ul class="list-unstyled">
+            <li>Sentiment classification (Positive, Neutral, Negative)</li>
+            <li>Interactive dashboards & trend analysis</li>
+            <li>Top keywords and post engagement</li>
+            <li>CRUD operations on Reddit posts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <h4>👨‍💻 Team Members</h4>
+        <ul class="list-unstyled">
+          <li>Yash Santosh Takte (ytakte)</li>
+          <li>Sejal Nimkar (sejnimka)</li>
+          <li>Niranjan Tapasvi (ntapasvi)</li>
+        </ul>
+      </div>
+
+      <div class="mt-4">
+        <a href="/dashboard" class="btn btn-start">🚀 Enter Dashboard</a>
+      </div>
+    </div>
+
+    <footer>
+      Project for Applied Database Technologies · Indiana University Bloomington · Spring 2025
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
