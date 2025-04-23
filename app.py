@@ -28,95 +28,62 @@ analyzer = SentimentIntensityAnalyzer()
 def home():
     return render_template("intro.html")
 
-# @app.route("/dashboard", methods=["GET", "POST"])
-# def dashboard():
-#     if request.method == "POST":
-#         subreddit_name = request.form["subreddit"]
-#         subreddit = reddit.subreddit(subreddit_name)
-#         collection.delete_many({})
-
-#         for post in subreddit.hot(limit=15):
-#             if post.num_comments < 3:
-#                 continue
-
-#             post.comments.replace_more(limit=None)
-#             top_comments = post.comments.list()[:200]
-#             comment_text = " ".join([comment.body for comment in top_comments])
-#             combined_text = post.title + " " + comment_text
-
-#             score = analyzer.polarity_scores(combined_text)
-#             label = "Positive" if score["compound"] > 0.05 else "Negative" if score["compound"] < -0.05 else "Neutral"
-
-#             collection.insert_one({
-#                 "title": post.title,
-#                 "score": post.score,
-#                 "comments": post.num_comments,
-#                 "created": datetime.datetime.fromtimestamp(post.created_utc),
-#                 "comment_text": comment_text,
-#                 "sentiment": label,
-#                 "sentiment_score": score["compound"]
-#             })
-
-#     posts = list(collection.find())
-#     return render_template("index.html", posts=posts, total_posts=len(posts))
-
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
-    if request.method == "POST":
-        subreddit_name = request.form["subreddit"]
-        subreddit = reddit.subreddit(subreddit_name)
+    try:
+        if request.method == "POST":
+            subreddit_name = request.form["subreddit"]
+            subreddit = reddit.subreddit(subreddit_name)
 
-        # Check if the collection exists
-        if "reddit_posts" not in db.list_collection_names():
-            db.create_collection("reddit_posts")
+            if "reddit_posts" not in db.list_collection_names():
+                db.create_collection("reddit_posts")
 
-        inserted_count = 0
+            inserted_count = 0
 
-        for post in subreddit.hot(limit=200):
-            if post.num_comments < 3:
-                continue
+            for post in subreddit.hot(limit=10):  # TEMP: reduce load
+                if post.num_comments < 3:
+                    continue
 
-            # Check if the post already exists in the collection
-            existing_post = collection.find_one({
-                "title": post.title,
-                "created": datetime.datetime.fromtimestamp(post.created_utc)
-            })
+                existing_post = collection.find_one({
+                    "title": post.title,
+                    "created": datetime.datetime.fromtimestamp(post.created_utc)
+                })
 
-            if existing_post:
-                continue  # Skip if already exists
+                if existing_post:
+                    continue
 
-            # Fetch and combine top-level comments
-            post.comments.replace_more(limit=None)
-            top_comments = post.comments.list()[:200]
-            comment_text = " ".join([comment.body for comment in top_comments])
-            combined_text = post.title + " " + comment_text
+                post.comments.replace_more(limit=None)
+                top_comments = post.comments.list()[:50]  # TEMP: fewer comments
+                comment_text = " ".join([comment.body for comment in top_comments])
+                combined_text = post.title + " " + comment_text
 
-            # Sentiment analysis
-            score = analyzer.polarity_scores(combined_text)
-            label = (
-                "Positive" if score["compound"] > 0.05
-                else "Negative" if score["compound"] < -0.05
-                else "Neutral"
-            )
+                score = analyzer.polarity_scores(combined_text)
+                label = (
+                    "Positive" if score["compound"] > 0.05
+                    else "Negative" if score["compound"] < -0.05
+                    else "Neutral"
+                )
 
-            # Insert new record
-            collection.insert_one({
-                "title": post.title,
-                "score": post.score,
-                "comments": post.num_comments,
-                "created": datetime.datetime.fromtimestamp(post.created_utc),
-                "comment_text": comment_text,
-                "sentiment": label,
-                "sentiment_score": score["compound"]
-            })
+                collection.insert_one({
+                    "title": post.title,
+                    "score": post.score,
+                    "comments": post.num_comments,
+                    "created": datetime.datetime.fromtimestamp(post.created_utc),
+                    "comment_text": comment_text,
+                    "sentiment": label,
+                    "sentiment_score": score["compound"]
+                })
 
-            inserted_count += 1
+                inserted_count += 1
 
-        print(f"Inserted {inserted_count} new records.")
+            print(f"Inserted {inserted_count} new records.")
 
-    posts = list(collection.find())
-    return render_template("index.html", posts=posts, total_posts=len(posts))
+        posts = list(collection.find())
+        return render_template("index.html", posts=posts, total_posts=len(posts))
 
+    except Exception as e:
+        print("🔥 Error in dashboard:", e)
+        return "Internal Server Error: " + str(e), 500
 
 # Create manual entry
 @app.route("/create", methods=["POST"])
