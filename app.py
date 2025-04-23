@@ -8,7 +8,9 @@ import datetime
 app = Flask(__name__)
 
 # MongoDB connection
-client = MongoClient("mongodb+srv://sejnimka:root1234@cluster0.9ke9pe9.mongodb.net/?retryWrites=true&w=majority")
+# client = MongoClient("mongodb+srv://sejnimka:root1234@cluster0.9ke9pe9.mongodb.net/?retryWrites=true&w=majority")
+mongo_uri = os.environ.get("MONGO_URI")
+client = MongoClient(mongo_uri)
 db = client["reddit_db"]
 collection = db["reddit_posts"]
 
