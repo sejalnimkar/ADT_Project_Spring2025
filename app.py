@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import praw
 import datetime
+import os
 
 app = Flask(__name__)
 
