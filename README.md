@@ -30,7 +30,7 @@ This project is a web application that fetches trending Reddit posts from a user
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, Jinja2 templates
+- **Frontend**: HTML, CSS, Javascript
 - **Backend**: Flask (Python)
 - **Database**: MongoDB Atlas
 - **APIs**: Reddit API via `praw`
