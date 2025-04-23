@@ -35,7 +35,7 @@ def home():
 #         subreddit = reddit.subreddit(subreddit_name)
 #         collection.delete_many({})
 
-#         for post in subreddit.hot(limit=200):
+#         for post in subreddit.hot(limit=15):
 #             if post.num_comments < 3:
 #                 continue
 
