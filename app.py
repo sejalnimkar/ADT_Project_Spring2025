@@ -41,7 +41,7 @@ def dashboard():
 
         inserted_count = 0
 
-        for post in subreddit.hot(limit=15):
+        for post in subreddit.hot(limit=100):
             if post.num_comments < 3:
                 continue
 
