@@ -3,219 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <title>AI & LLM Reddit Sentiment Dashboard</title>
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
   <style>
+    :root {
+  --green-600: #16a34a;
+  --gray-900: #111827;
+  --gray-700: #374151;
+  --gray-600: #4b5563;
+  --blue-700: #1e40af;
+  --indigo-200: #c7d2fe;
+  --blue-200: #bfdbfe;
+}
+
+    /* ─── Base Dark Mode Styles (default) ───────────────────────────────────────────────────────── */
     body {
       background-color: #0c0f15;
       color: #e5e7eb;
-      padding: 40px;
-      font-family: Georgia, serif;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      transition: background-color .3s, color .3s;
     }
-
-    h1, h5, th, td, label, input, select, button, .form-label, .modal-title, .btn {
-      font-family: Georgia, serif !important;
-    }
-
     h1 {
-      color: #38bdf8;
-      font-weight: 600;
-    }
-
-    .form-control, .form-select {
-      border-radius: 6px;
-      height: 40px;
-      background-color: #1f2937;
-      color: #f1f1f1;
-      border: 1px solid #374151;
-    }
-
-    .form-control::placeholder {
-      color: #9ca3af;
-    }
-
-    .btn {
-      padding: 8px 18px;
-      font-size: 14px;
-      border-radius: 6px;
-    }
-
-    .btn-fetch {
-      background-color: #22c55e;
-      color: white;
-    }
-
-    .btn-update {
-      background-color: #3b82f6;
-      color: white;
-    }
-
-    .btn-delete {
-      background-color: #ef4444;
-      color: white;
-    }
-
-    .btn-visualize {
-      background-color: #8b5cf6;
-      color: white;
-    }
-
-    table {
-      background-color: #111827;
-    }
-
-    table thead {
-      background-color: #1f2937;
-    }
-
-    th {
-      text-transform: uppercase;
-      font-size: 13px;
-      color: #93c5fd;
-    }
-
-    td {
-      vertical-align: middle;
-    }
-
-    .modal-content {
-      background-color: #1e293b;
-      color: #e5e7eb;
-      border-radius: 10px;
-    }
-
-    .modal-title {
-      font-weight: 600;
-      color: #60a5fa;
-    }
-
-    .btn-close-white {
-      filter: invert(1);
-    }
-
-    .table-container {
-      border: 1px solid #374151;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .section-title {
-      margin-bottom: 24px;
-    }
-
-    .dashboard-heading {
-      font-size: 32px;
+      color: #3b82f6;
       font-weight: 700;
-      line-height: 1.4;
-      margin-top: 10px;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 10px;
     }
+    .form-control, .form-select {
+      background-color: #1e293b;
+      border: 1px solid #374151;
+      color: #e5e7eb;
+    }
+    .form-control::placeholder { color: #9ca3af; }
+    .btn { border-radius: 6px; font-size: 14px; }
+    .btn-fetch { background-color: #135f2f; color: #fff; }
+    .btn-update { background-color: #3b82f6; color: #fff; }
+    .btn-delete { background-color: #ef4444; color: #fff; }
+    .btn-visualize { background-color: #8b5cf6; color: #fff; }
+    .badge-positive { background-color: #135f2f; }
+    .badge-neutral { background-color: #facc15; color: #111827; }
+    .badge-negative { background-color: #ef4444; }
+    table { background-color: #111827; }
+    table thead { background-color: #1f2937; }
+    th { text-transform: uppercase; font-size: 13px; color: #93c5fd; }
+    .table-hover tbody tr:hover { background-color: #1e293b; }
+/* ─── Dark‐mode striped override with gradient blues ───────────────────── */
+table.table-dark.table-striped > thead {
+  background-color: #111827 !important;  /* dark header */
+  color: white !important;
+}
+table.table-dark.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #3b82f6 !important;  /* vivid blue */
+  color: white !important;
+}
+table.table-dark.table-striped tbody tr:nth-of-type(even) {
+  background-color: #6366f1 !important;  /* violet-blue */
+  color: white !important;
+}
 
+
+    .action-icons .btn { padding: 4px 8px; }
     .gradient-text {
       background: linear-gradient(to right, #3b82f6, #8b5cf6);
-      background-clip: text;
-      -webkit-background-clip: text;
+      background-clip: text; -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    
+
+    /* ─── Light Mode Overrides ─────────────────────────────────────────────────────────────────── */
+    body.light-mode {
+      background-color: #f9fafb;
+      color: #111827;
+    }
+    body.light-mode .form-control, body.light-mode .form-select {
+      background-color: #fff; border-color: #d1d5db; color: #111827;
+    }
+    body.light-mode table { background-color: #ffffff; }
+    body.light-mode table thead { background-color: #e5e7eb; }
+    body.light-mode th { color: #1f2937; }
+    body.light-mode .badge-positive { background-color: #10b981; }
+    body.light-mode .badge-neutral { background-color: #fbbf24; color: #1f2937; }
+    body.light-mode .badge-negative { background-color: #ef4444; }
+
+    /* ─── Light Mode: Table Overrides ───────────────────────────────────────────────── */
+body.light-mode table.table {
+  background-color: #ffffff !important;
+}
+body.light-mode table.table thead {
+  background-color: #e5e7eb !important;
+}
+body.light-mode table.table th,
+body.light-mode table.table td {
+  color: #1f2937 !important;
+}
+
+/* keep the hover effect visible in light mode */
+body.light-mode .table-hover tbody tr:hover {
+  background-color: #f3f4f6 !important;
+}
+
+body.light-mode .table-responsive,
+  body.light-mode .table-container {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+/* ─── Light‐mode striped override ──────────────────────────────────────── */
+body.light-mode table.table-striped:not(.table-dark) > thead {
+  background-color: #1e40af !important;  /* blue-700 */
+  color: white !important;
+}
+body.light-mode table.table-striped:not(.table-dark) tbody tr:nth-of-type(odd) {
+  background-color: #93c5fd !important;  /* lighter blue */
+  color: #1e293b !important;
+}
+body.light-mode table.table-striped:not(.table-dark) tbody tr:nth-of-type(even) {
+  background-color: #60a5fa !important;  /* slightly darker blue */
+  color: #1e293b !important;
+}
+
+  /* ─── Light Mode: Override .table-dark variables ───────────────────────────── */
+body.light-mode .table-dark {
+  /* Base background */
+  --bs-table-bg: #ffffff !important;
+  /* Striped rows (if you ever use .table-striped) */
+  --bs-table-striped-bg: #f3f4f6 !important;
+  --bs-table-striped-color: #1f2937 !important;
+  /* Hover state */
+  --bs-table-hover-bg: #e9ecef !important;
+}
+
+/* Ensure all cells use the dark-text color */
+body.light-mode .table-dark th,
+body.light-mode .table-dark td {
+  color: #1f2937 !important;
+}
+
+/* And keep your wrapper white with a border */
+body.light-mode .table-responsive,
+body.light-mode .table-container {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+/* ─── Dark Mode Modal Styling ─────────────────────────────────────────── */
+body:not(.light-mode) .modal-content {
+  background-color: #1e293b;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+body:not(.light-mode) .modal-header,
+body:not(.light-mode) .modal-body,
+body:not(.light-mode) .modal-footer {
+  background-color: #1e293b;
+  color: #e5e7eb;
+}
+
+body:not(.light-mode) .form-control,
+body:not(.light-mode) .form-select {
+  background-color: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+body:not(.light-mode) .form-control::placeholder {
+  color: #9ca3af;
+}
+
+body:not(.light-mode) .btn-close {
+  filter: invert(1); /* makes close button visible on dark backgrounds */
+}
   </style>
 </head>
 <body>
   <div class="container">
+
+    <!-- Heading & Controls -->
     <div class="text-center mb-4">
-        <h1 class="dashboard-heading mb-3">
-          <span class="gradient-text">
-            Reddit Sentiment Analysis Exploring Discussions on <strong>AI</strong> & <strong>LLMs</strong>
-          </span>
-        </h1>
-        <p id="post-count" class="text-center mb-4" style="color: #93c5fd; font-size: 18px;">
-            Total Posts Analyzed: <strong> </strong>
-        </p>
-        <div class="d-flex justify-content-center gap-2 mt-3">
-          <a href="/" class="btn btn-secondary">← Back to Intro</a>
-          <button class="btn btn-fetch" data-bs-toggle="modal" data-bs-target="#createModal">+ Add New Entry</button>
-          <a href="/visualize" class="btn btn-visualize">View Visualizations</a>
-        </div>
+      <h1 class="gradient-text">Reddit Sentiment Analysis of AI &amp; LLM Discussions</h1>
+      <p id="post-count" class="mb-3" style="font-size:1rem; color:inherit;">
+        Total Posts Analyzed: <strong>0</strong>
+      </p>
+      <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <a href="/" class="btn btn-secondary">← Back to Intro</a>
+        <button type="button" class="btn btn-fetch" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-plus-lg"></i> Add New Entry
+        </button>
+        <a href="/visualize" class="btn btn-visualize">
+          <i class="bi bi-bar-chart"></i> View Visualizations
+        </a>
+        <button id="theme-toggle" type="button" class="btn btn-secondary">
+          <i class="bi bi-moon-stars"></i> Toggle Light/Dark
+        </button>
+      </div>
     </div>
 
+    <!-- Subreddit Fetch Form -->
     <form method="POST" class="mb-4 text-center">
       <input name="subreddit" class="form-control d-inline w-25" placeholder="Enter subreddit (e.g., LLM)" required>
-      <button type="submit" class="btn btn-fetch ms-2">Fetch Posts</button>
+      <button type="submit" class="btn btn-fetch ms-2">
+        <i class="bi bi-arrow-repeat"></i> Fetch Posts
+      </button>
     </form>
 
-    <div class="table-container">
-      <table class="table table-dark table-striped text-center align-middle mb-0">
-        <thead>
-          <tr>
-            <th style="white-space: nowrap;">Sr. No.</th>
-            <th>Title</th>
-            <th>Score</th>
-            <th>Comments</th>
-            <th>Sentiment</th>
-            <th>Created</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for post in posts %}
-          <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ post.title }}</td>
-            <td>{{ post.score }}</td>
-            <td>{{ post.comments }}</td>
-            <td>{{ post.sentiment }}</td>
-            <td>{{ post.created }}</td>
-            <td>
-                <div class="d-flex justify-content-center gap-2">
-                    <button class="btn btn-update btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ post._id }}">Update</button>
-                    <a href="/delete/{{ post._id }}" class="btn btn-delete btn-sm">Delete</a>
-                </div>
+    <!-- Table or Empty State -->
+    {% if posts %}
+      <div class="table-responsive table-container">
+        <table class="table table-dark table-striped table-hover text-center align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Sr. No.</th><th>Title</th><th>Score</th><th>Comments</th>
+              <th>Sentiment</th><th>Created</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+            <tr id="row-{{ post._id }}">
+              <td>{{ loop.index }}</td>
+              <td class="text-start">{{ post.title }}</td>
+              <td>{{ post.score }}</td>
+              <td>{{ post.comments }}</td>
+              <td>
+                {% if post.sentiment=="Positive" %}
+                  <span class="badge badge-positive">Positive</span>
+                {% elif post.sentiment=="Negative" %}
+                  <span class="badge badge-negative">Negative</span>
+                {% else %}
+                  <span class="badge badge-neutral">Neutral</span>
+                {% endif %}
+              </td>
+              <td>{{ post.created }}</td>
+              <td class="action-icons">
+                <!-- Edit -->
+                <button type="button" class="btn btn-outline-info btn-sm"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{ post._id }}">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <!-- Delete (POST form to ensure redirect back with full list) -->
+                <form method="POST" action="/delete/{{ post._id }}" style="display:inline;">
+                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
 
-              <!-- Update Modal -->
-              <div class="modal fade" id="editModal{{ post._id }}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                  <form method="POST" action="/update/{{ post._id }}">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Edit Post</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            <!-- Edit Modal (one per post) -->
+            <div class="modal fade" id="editModal{{ post._id }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <form method="POST" action="/update/{{ post._id }}">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Edit Post</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input name="title" class="form-control" value="{{ post.title }}" required>
                       </div>
-                      <div class="modal-body">
-                        <div class="mb-3">
-                          <label class="form-label">Title</label>
-                          <input type="text" name="title" class="form-control" value="{{ post.title }}" required>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Score</label>
-                          <input type="number" name="score" class="form-control" value="{{ post.score }}" required>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Comments</label>
-                          <input type="number" name="comments" class="form-control" value="{{ post.comments }}" required>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Sentiment</label>
-                          <select name="sentiment" class="form-select">
-                            <option value="Positive" {% if post.sentiment == "Positive" %}selected{% endif %}>Positive</option>
-                            <option value="Neutral" {% if post.sentiment == "Neutral" %}selected{% endif %}>Neutral</option>
-                            <option value="Negative" {% if post.sentiment == "Negative" %}selected{% endif %}>Negative</option>
-                          </select>
-                        </div>
+                      <div class="mb-3">
+                        <label class="form-label">Score</label>
+                        <input name="score" type="number" class="form-control" value="{{ post.score }}" required>
                       </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-fetch">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <div class="mb-3">
+                        <label class="form-label">Comments</label>
+                        <input name="comments" type="number" class="form-control" value="{{ post.comments }}" required>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Sentiment</label>
+                        <select name="sentiment" class="form-select">
+                          <option value="Positive" {% if post.sentiment=="Positive" %}selected{% endif %}>Positive</option>
+                          <option value="Neutral"  {% if post.sentiment=="Neutral"  %}selected{% endif %}>Neutral</option>
+                          <option value="Negative" {% if post.sentiment=="Negative" %}selected{% endif %}>Negative</option>
+                        </select>
                       </div>
                     </div>
-                  </form>
-                </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-fetch">Save</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+            </div>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="text-center py-5" style="color: #9ca3af; font-size:18px;">
+        No posts to display yet. Please enter a subreddit to start analyzing discussions.
+      </div>
+    {% endif %}
+
   </div>
 
-  <!-- Create Modal -->
+  <!-- Create Modal (always present) -->
   <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <form method="POST" action="/create">
@@ -240,9 +334,7 @@
             <div class="mb-2">
               <label class="form-label">Sentiment</label>
               <select name="sentiment" class="form-select">
-                <option>Positive</option>
-                <option>Neutral</option>
-                <option>Negative</option>
+                <option>Positive</option><option>Neutral</option><option>Negative</option>
               </select>
             </div>
           </div>
@@ -255,22 +347,36 @@
     </div>
   </div>
 
+  <!-- Bootstrap JS + live post‐count & theme toggle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
+    // Live post‐count (every 5s)
     function updatePostCount() {
       fetch("/api/total_posts")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("post-count").innerHTML =
-            `Total Posts Analyzed: <strong>${data.total}</strong>`;
-        });
+        .then(r => r.json())
+        .then(d => document.getElementById("post-count").innerHTML =
+                 `Total Posts Analyzed: <strong>${d.total}</strong>`);
     }
-  
     updatePostCount();
-  
     setInterval(updatePostCount, 5000);
-  </script>
 
+    // Light/Dark toggle (manual)
+    const toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      const icon = toggle.querySelector("i");
+      icon.classList.toggle("bi-sun-fill");
+      icon.classList.toggle("bi-moon-stars");
+      localStorage.setItem("theme", document.body.classList.contains("light-mode")
+                                      ? "light" : "dark");
+    });
+    // Apply saved theme on load
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+        toggle.querySelector("i").classList.replace("bi-moon-stars","bi-sun-fill");
+      }
+    });
+  </script>
 </body>
 </html>
