@@ -45,7 +45,7 @@ This project is a web application that fetches trending Reddit posts from a user
 - **Deployment**: Microsoft Azure App Service (Linux, Python 3.10)
 
 ---
-## 📸 Section 5: Screenshots
+## 📸 Screenshots
 
 ### 🏠 Landing Page (Home Page)  
 Landing page that welcomes users to the sentiment analysis tool.<br>  
@@ -54,7 +54,7 @@ Landing page that welcomes users to the sentiment analysis tool.<br>
 ---
 
 ### 📋 Dashboard  
-For demonstration purposes, the subreddit **LLM** was used.<br>  
+For demonstration purposes, the subreddit **"LLM"** was used.<br>  
 Users can add, edit, or delete posts manually.<br>  
 <img width="1703" alt="image" src="https://github.com/user-attachments/assets/c87e3c9a-d8b1-41dc-b9ef-35836139bf39" />
 
