@@ -56,7 +56,7 @@ Landing page that welcomes users to the sentiment analysis tool.<br>
 ### 📋 Dashboard  
 For demonstration purposes, the subreddit **LLM** was used.<br>  
 Users can add, edit, or delete posts manually.<br>  
-![Dashboard](<img width="1703" alt="image" src="https://github.com/user-attachments/assets/c87e3c9a-d8b1-41dc-b9ef-35836139bf39" />)
+<img width="1703" alt="image" src="https://github.com/user-attachments/assets/c87e3c9a-d8b1-41dc-b9ef-35836139bf39" />
 
 ---
 
@@ -64,15 +64,15 @@ Users can add, edit, or delete posts manually.<br>
 
 **Bar Chart – Sentiment Distribution**<br>  
 Shows the count of posts classified as Positive, Neutral, or Negative.<br>  
-![Sentiment Distribution](<img width="1459" alt="image" src="https://github.com/user-attachments/assets/614bcca9-130f-4d7e-89df-d7bc16e462dd" />)
+<img width="1459" alt="image" src="https://github.com/user-attachments/assets/614bcca9-130f-4d7e-89df-d7bc16e462dd" />
 
 **Line Chart – Sentiment Trend Over Time**<br>  
 Displays how the average sentiment score changes daily.<br>  
-![Sentiment Trend](<img width="1366" alt="image" src="https://github.com/user-attachments/assets/562c300b-a6c5-4c57-b864-3d02658972f3" />)
+<img width="1366" alt="image" src="https://github.com/user-attachments/assets/562c300b-a6c5-4c57-b864-3d02658972f3" />
 
 **Bar Chart – Most Discussed Keywords**<br>  
 Highlights the most frequent keywords in analyzed Reddit post titles.<br>  
-![Keywords](<img width="1489" alt="image" src="https://github.com/user-attachments/assets/e2dc487f-1942-414b-a3f1-85edebb521d7" />)
+<img width="1489" alt="image" src="https://github.com/user-attachments/assets/e2dc487f-1942-414b-a3f1-85edebb521d7" />
 
 
 ---
