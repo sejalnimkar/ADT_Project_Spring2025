@@ -49,7 +49,7 @@ This project is a web application that fetches trending Reddit posts from a user
 
 ### 🏠 Landing Page (Home Page)  
 Landing page that welcomes users to the sentiment analysis tool.<br>  
-![Landing Page](<img width="1705" alt="image" src="https://github.com/user-attachments/assets/3e5b8eb3-8630-4e4e-80e0-b479a3ca1dac" />)
+<img width="1705" alt="image" src="https://github.com/user-attachments/assets/3e5b8eb3-8630-4e4e-80e0-b479a3ca1dac" />
 
 ---
 
