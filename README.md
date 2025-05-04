@@ -48,4 +48,4 @@ This project is a web application that fetches trending Reddit posts from a user
 
 ## 🌐 Hosted App
 
-🔗 [Visit the Deployed Dashboard Here](https://adtproject-h2bjg0d7aaezg4af.eastus-01.azurewebsites.net/) 
+🔗 [Visit the Deployed Dashboard Here](https://adtproject-h2bjg0d7aaezg4af.eastus-01.azurewebsites.net/dashboard) 
