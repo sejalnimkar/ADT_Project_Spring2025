@@ -62,8 +62,10 @@ For demonstration purposes, the subreddit LLM was used.
 - **Bar Chart – Sentiment Distribution**
 <img width="1459" alt="image" src="https://github.com/user-attachments/assets/614bcca9-130f-4d7e-89df-d7bc16e462dd" />
 
+
 - **Line Chart – Sentiment Trend Over Time**
 <img width="1366" alt="image" src="https://github.com/user-attachments/assets/562c300b-a6c5-4c57-b864-3d02658972f3" />
+
 
 - **Bar Chart – Most Discussed Keywords**
 <img width="1489" alt="image" src="https://github.com/user-attachments/assets/e2dc487f-1942-414b-a3f1-85edebb521d7" />
