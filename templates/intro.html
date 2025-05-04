@@ -5,143 +5,221 @@
   <title>Welcome | AI & LLM Reddit Sentiment Analysis</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      background-color: #0c0f15;
-      color: #e5e7eb;
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
       font-family: Georgia, 'Segoe UI', sans-serif;
-      padding: 60px 30px;
     }
 
-    .container {
-      max-width: 1300px;
-      margin: auto;
-      animation: fadeIn 1s ease-in-out;
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .hero-section {
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      color: white;
+      text-align: center;
+      padding: 70px 30px 40px;
+      position: relative;
     }
 
-    .gradient-text {
-      background: linear-gradient(to right, #3b82f6, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 38px;
+    .hero-section h1 {
+      font-size: 45px;
       font-weight: bold;
-      line-height: 1.3;
+      margin-bottom: 10px;
     }
 
-    .section {
-      background-color: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      padding: 40px 40px 50px;
-      box-shadow: 0 0 18px rgba(255, 255, 255, 0.04);
+    .hero-section p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 30px;
     }
 
-    p {
-      font-size: 17px;
-      line-height: 1.6;
-      color: #cbd5e1;
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
     }
 
-    h4 {
-      color: #60a5fa;
-      font-size: 19px;
-      margin-top: 30px;
-      margin-bottom: 12px;
+    .hero-image-container {
+      position: absolute;
+      bottom: -60px; /* Controls how much it overlaps */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
     }
 
-    ul {
-      padding-left: 0;
-      list-style-position: inside;
+    .hero-image {
+      max-height: 180px;  /* Adjust based on your preference */
+      width: auto;
     }
 
-    li {
-      margin-bottom: 8px;
-    }
-
-    .btn-start {
+    .btn-dashboard {
       background-color: #10b981;
       color: white;
-      padding: 12px 28px;
-      font-size: 16px;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: 0.3s;
-      text-decoration: none;
     }
 
-    .btn-start:hover {
-      background-color: #059669;
+    .btn-how {
+      background-color: white;
+      color: #1f2937;
     }
 
-    footer {
+    .info-section {
+      background-color: #f9fafb;
+      padding: 18px 14px;
+      display: flex;
+      justify-content: space-around;
       text-align: center;
-      margin-top: 50px;
-      color: #6b7280;
-      font-size: 14px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 768px) {
-      .gradient-text {
-        font-size: 30px;
-      }
+    .info-column h4 {
+      color: #3b82f6;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .info-column ul {
+        list-style: none;
+        padding: 0;
+        font-size: 18px;
+        line-height: 1.8;
+        margin: 0;
+        text-align: left;
+    }
+
+    .info-column {
+        text-align: left;
+        padding: 10px;
+    }
+  
+
+    .footer {
+      background-color: #f1f5f9;
+      padding: 15px 30px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .dropdown-menu {
+      text-align: left;
+      padding: 15px;
+    }
+
+    .ai-image {
+      max-width: 100px;
+      height: auto;
+      margin-left: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="section text-center">
-      <h1 class="gradient-text mb-4">Reddit Sentiment Analysis on AI & LLMs</h1>
-
-      <p>
-        This project analyzes Reddit discussions around Artificial Intelligence (AI) and Large Language Models (LLMs),
-        helping users understand sentiment, trends, and public opinion in real time.
+  <div class="main-content">
+    <section class="hero-section">
+      <h1 class="display-5 fw-bold">Reddit Sentiment Analysis on AI & LLMs</h1>
+      <p class="lead fs-5 mx-auto" style="max-width: 700px;">
+        This project analyzes Reddit discussions around Artificial Intelligence (AI) and Large Language Models (LLMs), helping users understand sentiment, trends, and public opinion in real time.
       </p>
 
-      <div class="row justify-content-center text-start text-md-center mt-4">
-        <div class="col-md-5 mb-4">
-          <h4>📊 Data & Tools</h4>
-          <ul class="list-unstyled">
-            <li><strong>Source:</strong> Reddit API (via PRAW)</li>
-            <li><strong>Subreddits:</strong> r/LLM, r/artificial (or enter your own)</li>
-            <li><strong>Backend:</strong> Flask + MongoDB</li>
-            <li><strong>Sentiment:</strong> VADER (NLTK)</li>
-            <li><strong>Visuals:</strong> Chart.js</li>
-          </ul>
+    <div class="container my-5 pt-5">
+          <div class="row justify-content-center align-items-center mt-4">
+            <!-- Left: How It Works -->
+            <div class="col-md-3 text-center">
+              <div class="dropdown">
+                <button class="btn btn-light px-3 py-3 dropdown-toggle" style="font-size: 18px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  📌 How It Works
+                </button>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item"><strong>Step 1:</strong> Enter a subreddit focused on AI or LLM topics.</span></li>
+                    <li><span class="dropdown-item"><strong>Step 2:</strong> Fetch top posts and perform sentiment analysis.</span></li>
+                    <li><span class="dropdown-item"><strong>Step 3:</strong> Add, edit, or delete posts using built-in CRUD features.</span></li>
+                    <li><span class="dropdown-item"><strong>Step 4:</strong> Explore sentiment trends and popular keywords.</span></li>                    
+                </ul>
+              </div>
+            </div>
+          
+            <!-- Center: View Dashboard -->
+            <div class="col-md-3 text-center">
+              <a href="/dashboard" class="btn btn-success px-4 py-3" style="font-size: 18px;">🚀 View Dashboard</a>
+            </div>
+          
+            <!-- Right: Image -->
+            <div class="col-md-3 text-center">
+                <img src="{{ url_for('static', filename='images/AI.png') }}" 
+                alt="AI and LLM" 
+                class="img-fluid hero-image" 
+                style="max-height: 280px; margin-top: -140px;">           
+            </div>
+          </div>
+          
         </div>
-        <div class="col-md-5 mb-4">
-          <h4>✨ Key Features</h4>
-          <ul class="list-unstyled">
-            <li>Sentiment classification (Positive, Neutral, Negative)</li>
-            <li>Interactive dashboards & trend analysis</li>
-            <li>Top keywords and post engagement</li>
-            <li>CRUD operations on Reddit posts</li>
-          </ul>
-        </div>
       </div>
+           
 
-      <div class="text-center mt-4">
-        <h4>👨‍💻 Team Members</h4>
-        <ul class="list-unstyled">
-          <li>Yash Santosh Takte (ytakte)</li>
-          <li>Sejal Nimkar (sejnimka)</li>
-          <li>Niranjan Tapasvi (ntapasvi)</li>
-        </ul>
-      </div>
+    </section>
 
-      <div class="mt-4">
-        <a href="/dashboard" class="btn btn-start">🚀 Enter Dashboard</a>
-      </div>
+    <!-- Curved Blue Bottom Transition -->
+    <div class="curve-divider" style="background: linear-gradient(to right, #3b82f6, #6366f1); margin-top: -100px;">
+      <svg viewBox="0 0 1440 160" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+        <path fill="#f8fafc" d="M0,64L80,80C160,96,320,128,480,133.3C640,139,800,117,960,96C1120,75,1280,53,1360,42.7L1440,32V160H1360C1280,160,1120,160,960,160C800,160,640,160,480,160C320,160,160,160,80,160H0Z"></path>
+      </svg>
     </div>
 
-    <footer>
-      Project for Applied Database Technologies · Indiana University Bloomington · Spring 2025
-    </footer>
+    <section class="info-section">
+        <div class="container">
+          <div class="row justify-content-between text-center">
+            <div class="col-md-4 info-column">
+                <h4>🔍 Data & Tools</h4>
+                <ul>
+                  <li>Source: Reddit API (via PRAW)</li>
+                  <li>Subreddits: r/LLM, r/artificial (or custom)</li>
+                  <li>Backend: Flask + MongoDB</li>
+                  <li>Sentiment: VADER (NLTK)</li>
+                  <li>Visuals: Chart.js</li>
+                </ul>
+                
+            </div>
+            <div class="col-md-4 info-column">
+                <h4>✨ Key Features</h4>
+                <ul>
+                  <li>Sentiment classification</li>
+                  <li>Trend visualization & dashboards</li>
+                  <li>Keyword & engagement analysis</li>
+                  <li>CRUD post management</li>
+                </ul>
+                
+            </div>
+            <div class="col-md-3 info-column">
+                <h4>👨‍💻 Team Members</h4>
+                <ul>
+                  <li>Yash Takte</li>
+                  <li>Sejal Nimkar</li>
+                  <li>Niranjan Tapasvi</li>
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </section>      
   </div>
+  
+  <footer class="footer">
+    <span class="footer-text">Project for Applied Database Technologies · Indiana University Bloomington · Spring 2025</span>
+    <img src="{{ url_for('static', filename='images/iu-logo.png') }}" alt="IU Logo" width="40">
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
