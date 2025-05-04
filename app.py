@@ -7,7 +7,7 @@ import datetime
 import os
 import uuid
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.secret_key = os.urandom(24)  # Enable sessions
 
 # MongoDB connection
@@ -74,7 +74,7 @@ def dashboard():
 
     # Fetch only posts belonging to this session
     posts = list(collection.find({"session_id": session['session_id']}))
-    return render_template("index.html", posts=posts, total_posts=len(posts))
+    return render_template("index_2.html", posts=posts, total_posts=len(posts))
 
 @app.route("/create", methods=["POST"])
 def create():
@@ -99,7 +99,7 @@ def create():
     })
     return redirect(url_for("dashboard"))
 
-@app.route("/delete/<post_id>")
+@app.route("/delete/<post_id>", methods=["POST"])
 def delete(post_id):
     collection.delete_one({"_id": ObjectId(post_id)})
     return redirect(url_for("dashboard"))
@@ -167,4 +167,3 @@ def visualize():
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
-
