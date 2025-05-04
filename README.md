@@ -79,4 +79,5 @@ Highlights the most frequent keywords in analyzed Reddit post titles.<br>
 
 ## 🌐 Hosted App
 
-🔗 [Visit the Deployed Dashboard Here](https://adtproject-h2bjg0d7aaezg4af.eastus-01.azurewebsites.net/dashboard) 
+🔗 [Visit the Deployed Dashboard Here](https://adtproject-h2bjg0d7aaezg4af.eastus-01.azurewebsites.net/)
+
