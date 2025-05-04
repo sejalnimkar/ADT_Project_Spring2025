@@ -4,6 +4,13 @@ This project is a web application that fetches trending Reddit posts from a user
 
 ---
 
+## 🧑‍💻 Team Members
+
+1. Yash Takte
+2. Sejal Nimkar
+3. Niranjan Tapasvi
+
+---
 ## 🔧 Features
 
 - Fetches top Reddit posts from a specified subreddit using the Reddit API.
