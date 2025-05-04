@@ -74,7 +74,7 @@ def dashboard():
 
     # Fetch only posts belonging to this session
     posts = list(collection.find({"session_id": session['session_id']}))
-    return render_template("index.html", posts=posts, total_posts=len(posts))
+    return render_template("index_2.html", posts=posts, total_posts=len(posts))
 
 @app.route("/create", methods=["POST"])
 def create():
